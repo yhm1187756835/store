@@ -1,0 +1,22 @@
+{
+    "env": "dev",
+    "host": "dev.fmfe.com",
+    "port": 4009,
+    "debug": true,
+    "redis": {
+        "host": "127.0.0.1",
+        "port": "6379",
+        "db": 1
+    },
+    "redis0": {
+        "host": "192.168.8.6",
+        "port": "7001",
+        "password": "myredis",
+        "db": 0
+    },
+    "domain": ".fmfe.com",
+    "cookieMaxage": 2592000,
+    "allowOrigin": "*",
+    "fileMaxSize": 10485760
+
+}

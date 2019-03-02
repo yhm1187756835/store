@@ -1,0 +1,29 @@
+{
+    "env": "production",
+    "host": "www.followme.com",
+    "port": 6009,
+    "debug": true,
+    "redis": {
+        "host": "10.0.0.212",
+        "port": "6379",
+        "password": "Myredis123",
+        "db": 2
+    },
+    "redis0": {
+        "host": "10.0.0.211",
+        "port": "6379",
+        "password": "Myredis123",
+        "db": 0
+    },
+    "domain": ".followme.com",
+    "cookieMaxage": 2592000,
+    "allowOrigin": [
+        "m.followme.com",
+        "www.followme.com",
+        "cdn.followme.com",
+        "trade.followme.com",
+        "live.followme.com"
+    ],
+    "fileMaxSize": 10485760
+
+}

@@ -1,0 +1,6 @@
+{
+  "name": "自动贩卖机后台",
+  "version": "1.0.0",
+  "title": "给新版s自动贩卖机后台使用的api",
+  "description": "所有的上下行数据格式都是JSON，请注意设置请求头Content-Type: application/json; charset=utf-8"
+}
