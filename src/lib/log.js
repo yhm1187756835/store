@@ -1,6 +1,6 @@
 const log4js = require('log4js');
 
-const logConfig = require('../config/log_config');
+const logConfig = require('../../config/log');
 
 // 加载配置文件
 log4js.configure(logConfig);
@@ -28,7 +28,6 @@ logUtil.logResponse = function (ctx, resTime) {
 
 logUtil.logInfo = function (info) {
     if (info) {
-       
         consoleLogger.info( formatInfo(info));
     }
 };

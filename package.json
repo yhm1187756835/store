@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=dev node bin/www",
-    "dev": "cross-env NODE_ENV=dev  ./node_modules/.bin/nodemon bin/www",
-    "prd": "cross-env NODE_ENV=production pm2 start bin/www",
+    "start": "cross-env NODE_ENV=dev node src/bin/www",
+    "dev": "cross-env NODE_ENV=dev  ./node_modules/.bin/nodemon src/bin/www",
+    "prd": "cross-env NODE_ENV=production pm2 start src/bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
     "apidoc": "apidoc -i src/ -o apidoc/"
   },
@@ -22,6 +22,7 @@
     "koa-router": "^7.1.1",
     "koa-static": "^3.0.0",
     "koa-views": "^5.2.1",
+    "log4js": "^4.0.2",
     "mysql2": "^1.6.4",
     "pug": "^2.0.0-rc.1",
     "sequelize": "^4.42.0"

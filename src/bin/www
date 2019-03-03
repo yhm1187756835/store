@@ -9,7 +9,7 @@ const debug = require('debug')('demo:server');
 const http = require('http');
 const config=require('config');
 const fs = require('fs');
-const logConfig = require('../config/log_config');
+const logConfig = require('../../config/log');
 
 /**
  * Get port from environment and store in Express.

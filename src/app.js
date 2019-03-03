@@ -4,7 +4,8 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 
-const logUtil = require('./lib/log_util');
+const logUtil = require('./lib/log');
+const resFormat=require('./lib/resFormat');
 const index = require('./routes/index')
 const users = require('./routes/users')
 
@@ -15,6 +16,9 @@ app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
 app.use(json())
+
+app.use(require('koa-static')(__dirname + '/public'))
+
 //  logger
 app.use(async (ctx, next) => {
   // 响应开始时间
@@ -28,23 +32,16 @@ app.use(async (ctx, next) => {
     ms = new Date() - start;
     // 记录响应日志
     logUtil.logResponse(ctx, ms);
-
   } catch (error) {
-
     ms = new Date() - start;
     // 记录异常日志
     logUtil.logError(ctx, error, ms);
   }
-});
-app.use(require('koa-static')(__dirname + '/public'))
 
-//  logger
-app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
+});
+
+// 格式化相应
+app.use(resFormat())
 
 //  routes
 app.use(index.routes(), index.allowedMethods())
@@ -52,7 +49,8 @@ app.use(users.routes(), users.allowedMethods())
 
 //  error-handling
 app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
+  err.MSG='server error!'
+  logUtil.logError(ctx, err)
 });
 
 module.exports = app
