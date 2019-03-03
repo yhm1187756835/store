@@ -40,3 +40,4 @@ app/
 config.development.js
 adapter.development.js
 src/config/databse.js
+/logs

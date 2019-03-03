@@ -20,33 +20,33 @@ const responseLogPath = baseLogPath + responsePath + "/" + responseFileName;
 module.exports = {
     appenders:
     {
-        "rule-console": {"type": "console"},
+        "rule-console": { "type": "console" },
         "errorLogger": {
             "type": "dateFile",
             "filename": errorLogPath,
             "pattern": "-yyyy-MM-dd-hh.log",
             "alwaysIncludePattern": true,
-            "encoding":"utf-8",
+            "encoding": "utf-8",
             "maxLogSize": 1000,
             "numBackups": 3,
-            "path":errorPath
+            "path": errorPath
         },
         "resLogger": {
             "type": "dateFile",
             "filename": responseLogPath,
             "pattern": "-yyyy-MM-dd-hh.log",
             "alwaysIncludePattern": true,
-            "encoding":"utf-8",
+            "encoding": "utf-8",
             "maxLogSize": 1000,
             "numBackups": 3,
-            "path":responsePath
+            "path": responsePath
         },
     },
     categories: {
-        "default": {"appenders": ["rule-console"], "level": "all"},
-        "resLogger": {"appenders": ["resLogger"], "level": "info"},
-        "errorLogger": {"appenders": ["errorLogger"], "level": "error"},
-        "http": {"appenders": ["resLogger"],"level": "info"}
+        "default": { "appenders": ["rule-console"], "level": "all" },
+        "resLogger": { "appenders": ["resLogger"], "level": "info" },
+        "errorLogger": { "appenders": ["errorLogger"], "level": "error" },
+        "http": { "appenders": ["resLogger"], "level": "info" }
     },
-    "baseLogPath": baseLogPath 
+    "baseLogPath": baseLogPath
 }

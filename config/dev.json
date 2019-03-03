@@ -3,16 +3,22 @@
     "host": "127.0.0.1",
     "port": 3001,
     "debug": true,
+    "token": {
+        "secretKey": "jgiwfioeww325@%^",
+        "expiresIn": 3000
+    },
+    "passwordSalt": "328j#@fdjsifew",
+    "database": {
+        "username": "root",
+        "password": "root",
+        "database": "store",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "operatorsAliases": false
+    },
     "redis": {
         "host": "127.0.0.1",
         "port": "6379",
         "db": 1
-    },
-    "mysql": {
-        "host": "192.168.8.6",
-        "port": "3306",
-        "password": "store_dev",
-        "db": 0
     }
-
 }

@@ -9,7 +9,7 @@ const responseFormatter = () => {
             // 先去执行路由
             await next();
         } catch (error) {
-            if(error instanceof ApiError){
+            if (error instanceof ApiError) {
                 ctx.status = 200;
                 ctx.body = {
                     code: error.code,

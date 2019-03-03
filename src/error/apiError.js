@@ -4,10 +4,10 @@ const ApiErrorNames = require('./apiErrorNames');
 /**
  * 自定义Api异常
  */
-class ApiError extends Error{
+class ApiError extends Error {
     // 构造方法
     // eslint-disable-next-line require-jsdoc
-    constructor(errorName){
+    constructor(errorName) {
         super();
 
         const errorinfo = ApiErrorNames.getErrorInfo(errorName);

@@ -28,12 +28,12 @@ logUtil.logResponse = function (ctx, resTime) {
 
 logUtil.logInfo = function (info) {
     if (info) {
-        consoleLogger.info( formatInfo(info));
+        consoleLogger.info(formatInfo(info));
     }
 };
 
 const formatInfo = function (info) {
-    const logText ='';
+    let logText = '';
     // 响应日志开始
     logText += "\n" + "***************info log start ***************" + "\n";
 

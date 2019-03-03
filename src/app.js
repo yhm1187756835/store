@@ -3,22 +3,22 @@ const app = new Koa()
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
-
+const config=require('config')
 const logUtil = require('./lib/log');
-const resFormat=require('./lib/resFormat');
+const resFormat = require('./lib/resFormat');
 const index = require('./routes/index')
 const users = require('./routes/users')
+const db=require('./model')(config.database);
 
 //  error handler
 onerror(app)
+app.context.db=db;
 //  middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
-
 app.use(require('koa-static')(__dirname + '/public'))
-
 //  logger
 app.use(async (ctx, next) => {
   // 响应开始时间
@@ -28,7 +28,6 @@ app.use(async (ctx, next) => {
   try {
     // 开始进入到下一个中间件
     await next();
-
     ms = new Date() - start;
     // 记录响应日志
     logUtil.logResponse(ctx, ms);
@@ -37,19 +36,16 @@ app.use(async (ctx, next) => {
     // 记录异常日志
     logUtil.logError(ctx, error, ms);
   }
-
 });
 
 // 格式化相应
 app.use(resFormat())
-
 //  routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
-
 //  error-handling
 app.on('error', (err, ctx) => {
-  err.MSG='server error!'
+  err.message = 'server error!' + err.message
   logUtil.logError(ctx, err)
 });
 
