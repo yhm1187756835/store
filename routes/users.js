@@ -3,7 +3,7 @@ const config=require('config')
 
 router.prefix('/users')
 
-router.post('/register', function (ctx, next) {
+router.get('/', function (ctx, next) {
   console.log('+++config');
   console.log(config)
   ctx.body = 'this is a users response!'
