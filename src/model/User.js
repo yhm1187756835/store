@@ -2,10 +2,10 @@ const { associateMany } = require("./util/associate");
 
 module.exports = (sequelize, types) => {
   const User = sequelize.define("User", {
-    email: {
+    name: {
       type: types.STRING,
       allowNull: false,
-      comment: "用户邮箱",
+      comment: "用户名 普通用户要邮箱，其他角色不限",
       unique: true,
     },
     password: {

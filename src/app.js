@@ -3,16 +3,16 @@ const app = new Koa()
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
-const config=require('config')
-const logUtil = require('./lib/log');
-const resFormat = require('./lib/resFormat');
+const { database } = require('config')
+
 const index = require('./routes/index')
 const users = require('./routes/users')
-const db=require('./model')(config.database);
-
+const sequelize = require('./model/index')
+const logUtil = require('./lib/log')
+const resFormat = require('./lib/resFormat')
 //  error handler
 onerror(app)
-app.context.db=db;
+sequelize(database).then((orm) => { app.context.orm = orm });
 //  middlewares
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']

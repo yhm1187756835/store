@@ -5,7 +5,7 @@
     "debug": true,
     "token": {
         "secretKey": "jgiwfioeww325@%^",
-        "expiresIn": 3000
+        "expiresIn": "30d"
     },
     "passwordSalt": "328j#@fdjsifew",
     "database": {
@@ -13,8 +13,7 @@
         "password": "root",
         "database": "store",
         "host": "127.0.0.1",
-        "dialect": "mysql",
-        "operatorsAliases": false
+        "dialect": "mysql"
     },
     "redis": {
         "host": "127.0.0.1",

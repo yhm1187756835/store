@@ -2,7 +2,7 @@
  * 在app.use(router)之前调用
  */
 const ApiError = require('../error/apiError');
-
+const {debug}=require('config')
 const responseFormatter = () => {
     return async (ctx, next) => {
         try {
@@ -15,6 +15,9 @@ const responseFormatter = () => {
                     code: error.code,
                     message: error.message
                 }
+            }
+            if(debug){
+                console.log(error)
             }
             // 继续抛，让外层中间件处理日志
             throw error;
