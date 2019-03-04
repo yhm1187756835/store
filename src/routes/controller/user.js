@@ -15,6 +15,7 @@ exports.register = async (ctx) => {
     throw new ApiErr(ApiErrName.invalidMail);
   }
   // check if email existed
+  
   const userSer = new UserSer(ctx.orm);
   const u = await userSer.findOne({ name: email })
   console.log('--------------u',u)
