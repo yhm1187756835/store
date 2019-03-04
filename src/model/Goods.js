@@ -5,6 +5,7 @@ module.exports = (sequelize, types) => {
     name: {
       type: types.STRING,
       allowNull: false,
+      unique: true,
       comment: "商品名称",
     },
     price: {

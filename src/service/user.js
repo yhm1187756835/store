@@ -12,15 +12,14 @@ module.exports = class extends DatabaseServiceBase {
    */
   constructor(sequelize) {
     super(sequelize);
-    this.userDb = sequelize.models["User"];
+    this.orm = sequelize.models["User"];
   }
   /**
    * 查询用户
    * @param {Object} where 
    */
   async findOne(where) {
-    console.log('+++++++++++',typeof where.name,where)
-    return await this.userDb.findOne({
+    return this.orm.findOne({
       attributes: ["id", "name", "role"],
       where,
     });
@@ -34,7 +33,7 @@ module.exports = class extends DatabaseServiceBase {
    */
   async insert(name, password, role = 'user') {
     password = pswhash(password);
-    return await this.userDb.create(
+    return this.orm.create(
       {
         name,
         password,
@@ -48,8 +47,8 @@ module.exports = class extends DatabaseServiceBase {
    * @param {String} role 
    */
   async delete(where, role = 'user') {
-    if (role === 'root') { 
-      return await this.userDb.destory(
+    if (role === 'root') {
+      return await this.orm.destory(
         {
           where
         }

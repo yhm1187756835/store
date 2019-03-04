@@ -11,7 +11,6 @@ const resLogger = log4js.getLogger("resLogger");
 const errorLogger = log4js.getLogger("errorLogger");
 const consoleLogger = log4js.getLogger();
 
-
 // 封装错误日志
 logUtil.logError = function (ctx, error, resTime) {
     if (ctx && error) {

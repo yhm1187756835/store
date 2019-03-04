@@ -27,15 +27,16 @@ module.exports = async function (database) {
   // 初始化 表
   await sequelize.sync({
     logging: logUtil.logInfo,
-    // benchmark: true,
+    // force: true,
   });
 
   // create root
   const userSer = new UserSer(sequelize);
   try {
-    const root = await userSer.findOne({ role: 'root' })
+    const root = await userSer.findOne({ name: 'root' })
+    // console.log('----root',root)
     if (!root) {
-      await userSer.insert('root', 'root', 'root');
+      await userSer.insert('1882426196563@153.com', 'root', 'root');
     }
   } catch (error) {
     logUtil.logError(null,error,null);

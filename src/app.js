@@ -5,11 +5,13 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const { database } = require('config')
 
-const index = require('./routes/index')
-const users = require('./routes/users')
 const sequelize = require('./model/index')
 const logUtil = require('./lib/log')
 const resFormat = require('./lib/resFormat')
+const index = require('./routes/index')
+const users = require('./routes/users')
+const goods = require('./routes/goods')
+
 //  error handler
 onerror(app)
 sequelize(database).then((orm) => { app.context.orm = orm });
@@ -43,6 +45,7 @@ app.use(resFormat())
 //  routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(goods.routes(), goods.allowedMethods())
 //  error-handling
 app.on('error', (err, ctx) => {
   err.message = 'server error!' + err.message
