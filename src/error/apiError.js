@@ -1,4 +1,3 @@
-
 const ApiErrorNames = require('./apiErrorNames');
 
 /**

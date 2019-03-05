@@ -1,10 +1,13 @@
 const DatabaseServiceBase = require("./database");
-const pswhash = require('../lib/pswdhash')
+const pswhash = require('../lib/pswdhash');
+const Auth = require('../../config/auth');
+const ApiErr = require('../error/apiError');
+const ApiErrName = require('../error/apiErrorNames');
 
 /**
  * 用户服务
  */
-module.exports = class extends DatabaseServiceBase {
+module.exports = class User extends DatabaseServiceBase {
 
   /**
    * 构造函数
@@ -13,6 +16,25 @@ module.exports = class extends DatabaseServiceBase {
   constructor(sequelize) {
     super(sequelize);
     this.orm = sequelize.models["User"];
+  }
+
+  /**
+   * 检查权限
+   * @param {String}  needAuth 
+   * @param {String} role 
+   */
+  static checkAuth(needAuth, role) {
+    const roleAuths = Auth[role] || [];
+    let f = false;
+    for (let index = 0; index < roleAuths.length; index++) {
+      const auth = roleAuths[index];
+      if (auth === needAuth) {
+        f = true;
+      }
+    }
+    if(!f){
+      throw new ApiErr(ApiErrName.needAuth)
+    }
   }
   /**
    * 查询用户

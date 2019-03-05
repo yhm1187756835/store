@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { secretKey, expiresIn } = require("../config").token;
+const { secretKey, expiresIn } = require("config").token;
 
 /**
  * 会话使用的token处理

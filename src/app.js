@@ -11,6 +11,7 @@ const resFormat = require('./lib/resFormat')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const goods = require('./routes/goods')
+const logMiddle=require('./middleware/log');
 
 //  error handler
 onerror(app)
@@ -21,27 +22,12 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(require('koa-static')(__dirname + '/public'))
-//  logger
-app.use(async (ctx, next) => {
-  // 响应开始时间
-  const start = new Date();
-  // 响应间隔时间
-  let ms;
-  try {
-    // 开始进入到下一个中间件
-    await next();
-    ms = new Date() - start;
-    // 记录响应日志
-    logUtil.logResponse(ctx, ms);
-  } catch (error) {
-    ms = new Date() - start;
-    // 记录异常日志
-    logUtil.logError(ctx, error, ms);
-  }
-});
 
+//  logger
+app.use(logMiddle);
 // 格式化相应
 app.use(resFormat())
+
 //  routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())

@@ -15,12 +15,18 @@ const responseFormatter = () => {
                     code: error.code,
                     message: error.message
                 }
+            }else{
+                ctx.body = {
+                    code: -1,
+                    message:'服务器内部错误，请确认输入数据有效',
+                }
             }
             if(debug){
-                console.log(error)
+             console.log(error)
             }
             // 继续抛，让外层中间件处理日志
             throw error;
+           
         }
         if (ctx.body) {
             ctx.body = {
